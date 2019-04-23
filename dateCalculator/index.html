@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+          data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            Documentation
+          </a>
+
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="columns">
+
+        <div class="column is-one-third">
+          <div class="card none" style="margin-bottom: 12px;">
+            <header class="card-header">
+              <p class="card-header-title">
+                Kết quả
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content" style="color: green; font-weight: bold; font-size: 1.5em" id="result">
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Tính thời hạn tạm giam
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <!-- input nhập ngày tháng  -->
+                <div class="field has-addons" style="margin-bottom: 12px;">
+                  <div class="control is-expanded tooltip" data-tooltip="Nhập ngày bắt đầu">
+                    <input class="input" type="text" placeholder="VD: 20/9/2018 hoặc 20092018." id="startDate">
+                  </div>
+                  <div class="control">
+                    <i class="material-icons button" style="font-size: 1em; padding: 8px 12px 0  12px">
+                      calendar_today
+                    </i>
+                  </div>
+                </div>
+
+                <!-- chọn phép tính -->
+                <div class="field is-grouped is-grouped-right" style="margin-bottom: 12px;">
+                  <div class="control tooltip" data-tooltip="Chọn phép tính">
+                    <div class="select">
+                      <select style="width: 80px" id="operator">
+                        <option value="plus">+</option>
+                        <option value="subtract">-</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- chọn ngày tháng năm thực hiện phép tính -->
+
+                <div class="field has-addons has-addons-right">
+                  <div class="control is-expanded tooltip" data-tooltip="Nhập ngày">
+                    <input class="input" type="number" value="0" id="day">
+                  </div>
+                  <div class="control">
+                    <div class="button is-static" style="border-left: 0; width: 80px">
+                      ngày
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="field has-addons has-addons-right">
+
+                  <div class="control is-expanded tooltip" data-tooltip="Nhập tháng">
+                    <input class="input" type="number" value="0" id="month">
+                  </div>
+                  <div class="control">
+                    <div class="button is-static" style="border-left: 0; width: 80px">
+                      tháng
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="field has-addons has-addons-right">
+
+                  <div class="control is-expanded tooltip" data-tooltip="Nhập năm">
+                    <input class="input" type="number" value="0" id="year">
+                  </div>
+                  <div class="control">
+                    <div class="button is-static" style="border-left: 0; width: 80px">
+                      năm
+                    </div>
+                  </div>
+
+
+                </div>
+                <!-- submit -->
+                <div class="field is-grouped is-grouped-right">
+                    <div class="control tooltip" data-tooltip="Nối lệnh (trừ đi 01 ngày)">
+                        <label class="checkbox button is-white">
+                            <input type="checkbox" id="subtract1" checked>
+                           Nối lệnh
+                          </label>
+                      </div> 
+           
+                  <div class="control tooltip" data-tooltip="Xóa dữ liệu và thực hiện lại">
+                    <button class="button" id="reset">Làm lại</button>
+                  </div>
+                  <div class="control tooltip" data-tooltip="Thực hiện phép tính">
+                    <button class="button is-info" id="submit">Tính</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="column has-text-justified">
+
+          <div class="card">
+            <header class="card-header">
+              <div class="tabs is-centered">
+                <ul>
+                  <li class="is-active" id="detentionTerm" name="tabList"><a class="card-header-title">
+                      Thời hạn tạm giam
+                    </a></li>
+                  <li id="renewDetention" name="tabList"><a class="card-header-title">Gia hạn tạm giam</a></li>
+                  <li id="kind" name="tabList"><a class="card-header-title">Loại án</a></li>
+                </ul>
+              </div>
+
+            </header>
+
+
+
+
+
+            <div class="card-content">
+              <div class="content" id="detentionTermContent">
+                <p>1. Thời hạn tạm giam bị can để điều tra không quá 02 tháng đối với tội phạm ít nghiêm trọng, không
+                  quá
+                  03
+                  tháng đối với tội phạm nghiêm trọng, không quá 04 tháng đối với tội phạm rất nghiêm trọng và tội phạm
+                  đặc
+                  biệt nghiêm trọng.</p>
+                <p> 2. Trường hợp vụ án có nhiều tình tiết phức tạp, xét cần phải có thời gian dài hơn cho việc điều tra
+                  và
+                  không có căn cứ để thay đổi hoặc hủy bỏ biện pháp tạm giam thì chậm nhất là 10 ngày trước khi hết
+                  thời
+                  hạn tạm giam, Cơ quan điều tra phải có văn bản đề nghị Viện kiểm sát gia hạn tạm giam.</p>
+
+
+              </div>
+              <div class="content none" id="renewDetentionContent">
+
+                <p>Việc gia hạn tạm giam được quy định như sau:
+                  <p> Đối với tội phạm ít nghiêm trọng có thể được gia hạn tạm giam một lần không quá 01 tháng;
+                  </p>
+                  <p> b) Đối với tội phạm nghiêm trọng có thể được gia hạn tạm giam một lần không quá 02 tháng;
+                  </p>
+                  <p>c) Đối với tội phạm rất nghiêm trọng có thể được gia hạn tạm giam một lần không quá 03 tháng;
+                  </p>
+                  <p>d) Đối với tội phạm đặc biệt nghiêm trọng có thể được gia hạn tạm giam hai lần, mỗi lần không quá
+                    04
+                    tháng.</p>
+
+              </div>
+              <div class="content none" id="kindContent">
+
+                <p>Căn cứ vào tính chất và mức độ nguy hiểm cho xã hội của hành vi phạm tội được quy định trong Bộ luật
+                này, tội phạm được phân thành bốn loại sau đây:</p>
+
+                <p>1. Tội phạm ít nghiêm trọng là tội phạm có tính chất và mức độ nguy hiểm cho xã hội không lớn mà mức cao
+                nhất của khung hình phạt do Bộ luật này quy định đối với tội ấy là phạt tiền, phạt cải tạo không giam
+                giữ hoặc phạt tù đến 03 năm;</p>
+
+                <p>2. Tội phạm nghiêm trọng là tội phạm có tính chất và mức độ nguy hiểm cho xã hội lớn mà mức cao nhất của
+                khung hình phạt do Bộ luật này quy định đối với tội ấy là từ trên 03 năm đến 07 năm tù;</p>
+
+                <p>3. Tội phạm rất nghiêm trọng là tội phạm có tính chất và mức độ nguy hiểm cho xã hội rất lớn mà mức cao
+                nhất của khung hình phạt do Bộ luật này quy định đối với tội ấy là từ trên 07 năm đến 15 năm tù;</p>
+
+                <p>4. Tội phạm đặc biệt nghiêm trọng là tội phạm có tính chất và mức độ nguy hiểm cho xã hội đặc biệt lớn
+                mà mức cao nhất của khung hình phạt do Bộ luật này quy định đối với tội ấy là từ trên 15 năm đến 20 năm
+                tù, tù chung thân hoặc tử hình.</p>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="script.js"></script>
+  <script src="dateCalculator.js"> </script>
+</body>
+
+</html>
