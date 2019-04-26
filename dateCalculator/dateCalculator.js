@@ -21,7 +21,8 @@ submit.addEventListener('click', () => {
 });
 // xử lý startDate về định dạng dd/mm/yyyy và check lỗi
 startDate.addEventListener('focusout', () => {
-    convertStartDate();
+    let check = checkStartDate();
+    if (check === false) {convertStartDate()}
     checkStartDate();
 });
 
@@ -42,6 +43,7 @@ year.addEventListener('focusout', () => {
 
 // F chạy chương trình
 function main() {
+    if
     let startValue = handleInput(dateFormat()[0], dateFormat()[1], dateFormat()[2]);
     let rs = calculate(startValue);
     let day = rs.getDate();
@@ -95,6 +97,7 @@ function calculate(input) {
 
 // F xử lý định dạng dd/mm/yyyy 
 function convertStartDate() {
+    
     let temp = startDate.value.match(/\d/g);
     if (temp === null) temp = '';
     else temp = temp.join('');
@@ -116,11 +119,11 @@ function checkStartDate() {
     if (validDate(year, month, day) === false) {
         startDate.classList.add('is-danger');
         document.querySelector('i.material-icons.button').classList.add('is-danger');
-
+        return false;
     } else {
         startDate.classList.remove('is-danger');
         document.querySelector('i.material-icons.button').classList.remove('is-danger');
-
+        return true;
     }
 
 }
