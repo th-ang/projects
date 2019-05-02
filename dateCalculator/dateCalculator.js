@@ -43,7 +43,6 @@ year.addEventListener('focusout', () => {
 
 // F chạy chương trình
 function main() {
-    if
     let startValue = handleInput(dateFormat()[0], dateFormat()[1], dateFormat()[2]);
     let rs = calculate(startValue);
     let day = rs.getDate();
