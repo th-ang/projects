@@ -26,6 +26,23 @@ startDate.addEventListener('focusout', () => {
     checkStartDate();
 });
 
+// xử lý input khi rỗng
+day.addEventListener('focusout', () => {
+    if (day.value === '') {day.value = 0}
+   
+});
+month.addEventListener('focusout', () => {
+    if (month.value === '') {month.value = 0}
+   
+});
+
+year.addEventListener('focusout', () => {
+    if (year.value === '') {year.value = 0}
+   
+});
+
+
+
 // xử lý day month year
 day.addEventListener('focusout', () => {
     if (day.value < 0) day.value = 0;
